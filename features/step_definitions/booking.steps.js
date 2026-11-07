@@ -8,10 +8,13 @@ const {
   isButtonDisabled,
 } = require("../../lib/commands");
 
-Given("пользователь открыл сеанс на последний день недели", async function () {
-  await this.page.goto(BASE_URL);
-  await selectSeance(this.page, 7, 0);
-});
+Given(
+  "пользователь открыл сеанс на день недели {string}",
+  async function (weekday) {
+    await this.page.goto(BASE_URL);
+    await selectSeance(this.page, weekday, 0);
+  },
+);
 
 When(
   /^он выбирает (\d+) свободн(?:ое|ых) мест(?:о|а) и бронирует (?:его|их)$/,
